@@ -38,6 +38,7 @@ public:
 	void insert(float element , const T & value);
 	void popFront();
 	void popBack();
+	void deleteList();
 	//void erase(T);
 	//void remove(T);
 	//T first();
@@ -153,14 +154,56 @@ inline void List<T>::popBack()
 	}
 }
 
-
-
 template<class T>
 inline void List<T>::insert(float element, const T & value)
 {
+	if (element < 0 || element > m_eleNum)
+	{
+		throw;
+	}
 
+	if (element = 0)
+	{
+		pushFront(element);
+	}
+	else if (element == m_eleNum)
+	{
+		pushBack(element);
+	}
+	else
+	{
+		ListNode * holder = m_first;
 
+		for (int i = 0; i < element; i++)
+		{
+			if (i = element)
+			{
+				ListNode * N = new ListNode();
 
+				N->next = holder->next;
+				N->previous = holder; 
+
+				holder->next->previous = N;
+
+				holder->next = N;
+
+				N->obj = value;
+
+				m_eleNum++;
+			}
+			else
+			{
+				holder = holder->next;
+			}
+		}
+
+	}
+}
+
+template<class T>
+inline void List<T>::deleteList()
+{
+	ListNode * Start = 
 	for (int i = 0; i < m_eleNum; i++)
 	{
 
