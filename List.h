@@ -228,7 +228,7 @@ inline void List<T>::insert(float element, const T & value)
 	{
 		ListNode * holder = m_first;
 
-		for (int i = 0; i <= element; i++)
+		for (int i = 1; i <= element; i++)
 		{
 			if (i == element)
 			{
