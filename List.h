@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 template<class T>
 class List
 {
@@ -9,16 +10,23 @@ private:
 	public:
 		ListNode()
 		{
-			Next = nullptr
+			Next = nullptr;
 			Previous = nullptr;
 		}
+
+		ListNode(T newobj)
+		{
+			Next = nullptr;
+			Previous = nullptr;
+			obj = newobj;
+		}
+
 		~ListNode()
 		{
 			Next = nullptr;
 			Previous = nullptr;
 		}
 
-	private:
 		ListNode * Next;
 		ListNode * Previous;
 		T obj;
@@ -33,13 +41,14 @@ public:
 	List() {};
 	~List() {};
 
-	void pushFront(const T & value);
-	void pushBack(const T & value);
+	void pushFront(const T  value);
+	void pushBack(const T  value);
 	void insert(float element , const T & value);
 	void popFront();
 	void popBack();
 	void deleteList();
 	void deletePosition(float position);
+	void printList();
 	//void erase(T);
 	//void remove(T);
 	//T first();
@@ -54,22 +63,23 @@ public:
 };
 
 template<class T>
-inline void List<T>::pushFront(const T & value)
+inline void List<T>::pushFront(const T value)
 {
 	
 	if (m_eleNum == 0)
 	{
-		m_first->obj = value;
+		m_first = new ListNode(value);
+		m_last = m_first;
 	}
 	else
 	{
-		ListNode * N = new ListNode()
+		ListNode * N = new ListNode();
 
-		N->previous = nullptr;
+		N->Previous = nullptr;
 
 		N->Next = m_first;
 
-		m_first->previous = N;
+		m_first->Previous = N;
 
 		m_first = N;
     	
@@ -80,7 +90,7 @@ inline void List<T>::pushFront(const T & value)
 
 
 template<class T>
-inline void List<T>::pushBack(const T & value)
+inline void List<T>::pushBack(const T value)
 {
 	if (m_eleNum == 0)
 	{
@@ -92,9 +102,9 @@ inline void List<T>::pushBack(const T & value)
 
 		N->Next = nullptr;
 
-		N->previous = m_last;
+		N->Previous = m_last;
 
-		m_last->m_next = N;
+		m_last->Next = N;
 
 		m_last = N;
 
@@ -116,11 +126,11 @@ inline void List<T>::popFront()
 	else
 	{
 	
-		ListNode * holder = m_first->next;
+		ListNode * holder = m_first->Next;
 	
 		delete m_first;
 
-		holder->previous = nullptr;
+		holder->Previous = nullptr;
 		
 		m_first = holder;
 		
@@ -141,11 +151,11 @@ inline void List<T>::popBack()
 	else
 	{
 
-		ListNode * holder = m_last->previous;
+		ListNode * holder = m_last->Previous;
 
 		delete m_last;
 
-		holder->next = nullptr;
+		holder->Next = nullptr;
 
 		m_last = holder;
 
@@ -179,12 +189,12 @@ inline void List<T>::insert(float element, const T & value)
 			{
 				ListNode * N = new ListNode();
 
-				N->next = holder->next;
-				N->previous = holder; 
+				N->Next = holder->Next;
+				N->Previous = holder;
 
-				holder->next->previous = N;
+				holder->Next->Previous = N;
 
-				holder->next = N;
+				holder->Next = N;
 
 				N->obj = value;
 
@@ -192,7 +202,7 @@ inline void List<T>::insert(float element, const T & value)
 			}
 			else
 			{
-				holder = holder->next;
+				holder = holder->Next;
 			}
 		}
 
@@ -206,7 +216,7 @@ inline void List<T>::deleteList()
 
 	for (int i = 0; i < m_eleNum; i++)
 	{
-		m_first = m_first->next;
+		m_first = m_first->Next;
 
 		delete start;
 
@@ -225,7 +235,6 @@ inline void List<T>::deletePosition(float position)
 
 	if (position < 0 || position > m_eleNum)
 	{
-		element;
 		throw;
 	}
 
@@ -238,10 +247,39 @@ inline void List<T>::deletePosition(float position)
 		popBack();
 	}
 
-	for ( i = 0; i < length; i++)
+	else
 	{
+		ListNode * holder = m_first;
 
+		for (i = 0; i < length; i++)
+		{
+			if (i == position)
+			{
+				holder->Next = holder->Previous;
+
+				holder->Previous = holder->Next;
+
+				delete holder;
+
+			}
+			else
+			{
+				holder = holder->Next;
+			}
+		}
+
+	
 	}
+}
 
+template<class T>
+inline void List<T>::printList()
+{
+	for (int i = 0; i < m_eleNum; i++)
+	{
+		std::cout << m_first->obj;
+
+		m_first = m_first->Next;
+	}
 }
 
