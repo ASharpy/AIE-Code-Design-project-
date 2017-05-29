@@ -39,6 +39,7 @@ public:
 	void popFront();
 	void popBack();
 	void deleteList();
+	void deletePosition(float position);
 	//void erase(T);
 	//void remove(T);
 	//T first();
@@ -109,8 +110,7 @@ inline void List<T>::popFront()
 
 	if (m_eleNum == 1)
 	{
-		delete m_first;
-		m_eleNum--;
+		deleteList();
 
 	}
 	else
@@ -135,8 +135,7 @@ inline void List<T>::popBack()
 
 	if (m_eleNum == 1)
 	{
-		delete m_last;
-		m_eleNum--;
+		deleteList();
 
 	}
 	else
@@ -203,10 +202,46 @@ inline void List<T>::insert(float element, const T & value)
 template<class T>
 inline void List<T>::deleteList()
 {
-	ListNode * Start = 
+	ListNode * Start = m_first;
+
 	for (int i = 0; i < m_eleNum; i++)
+	{
+		m_first = m_first->next;
+
+		delete start;
+
+		Start = m_first;
+	}
+
+	m_first = nullptr;
+
+	m_last = nullptr;
+
+}
+
+template<class T>
+inline void List<T>::deletePosition(float position)
+{
+
+	if (position < 0 || position > m_eleNum)
+	{
+		element;
+		throw;
+	}
+
+	if (position == 0)
+	{
+		popFront();
+	}
+	else if (position == m_eleNum)
+	{
+		popBack();
+	}
+
+	for ( i = 0; i < length; i++)
 	{
 
 	}
 
 }
+
