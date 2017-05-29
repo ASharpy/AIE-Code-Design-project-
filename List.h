@@ -33,11 +33,55 @@ private:
 
 	};
 
-
 	ListNode * m_first;
 	ListNode * m_last;
+
 	float m_eleNum = 0;
 public:
+	class Iterator
+	{
+	public:
+		Iterator() {};
+
+		Iterator(const Iterator & other) { ptr = other.ptr; };
+
+		~Iterator() {};
+
+		ListNode * ptr;
+
+		void operator++(int) { ptr = ptr->Next; };
+
+		void operator++() { ptr = ptr->Next; };
+
+		void operator--() { ptr = ptr->Previous; };
+
+		void operator--(int) { ptr = ptr->Previous; };
+		
+		bool operator!=(const Iterator & other) { return ptr != other.ptr; };
+
+		bool operator==(const Iterator & other) { return ptr == other.ptr; };
+
+		Iterator operator=(const Iterator & other) { ptr = other.ptr; return *this; };
+		T &operator*() {return ptr->obj; };
+	
+	};
+
+	Iterator end() 
+	{ 
+		Iterator temp;
+		temp.ptr = nullptr;
+		return temp;
+	};
+
+	Iterator begin()
+	{
+		Iterator temp;
+		temp.ptr = m_first;
+		return temp;
+	};
+
+
+
 	List() {};
 	~List() {};
 
@@ -94,11 +138,12 @@ inline void List<T>::pushBack(const T value)
 {
 	if (m_eleNum == 0)
 	{
-		m_last->obj = value;
+		m_last = new ListNode(value);
+		m_first = m_last;
 	}
 	else
 	{
-		ListNode * N = new ListNode()
+		ListNode * N = new ListNode();
 
 		N->Next = nullptr;
 
@@ -111,7 +156,7 @@ inline void List<T>::pushBack(const T value)
 		m_last->obj = value;
 	}
 
-	m_eleNun++;
+	m_eleNum++;
 }
 
 template<class T>
@@ -171,7 +216,7 @@ inline void List<T>::insert(float element, const T & value)
 		throw;
 	}
 
-	if (element = 0)
+	if (element == 0)
 	{
 		pushFront(element);
 	}
@@ -183,9 +228,9 @@ inline void List<T>::insert(float element, const T & value)
 	{
 		ListNode * holder = m_first;
 
-		for (int i = 0; i < element; i++)
+		for (int i = 0; i <= element; i++)
 		{
-			if (i = element)
+			if (i == element)
 			{
 				ListNode * N = new ListNode();
 
@@ -218,7 +263,7 @@ inline void List<T>::deleteList()
 	{
 		m_first = m_first->Next;
 
-		delete start;
+		delete Start;
 
 		Start = m_first;
 	}

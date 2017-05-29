@@ -4,12 +4,19 @@ int main()
 {
 	List<int> N;
 
-	N.pushFront(1);
-	N.pushFront(2);
-	N.pushFront(3);
-	N.pushFront(4);
-	N.pushFront(5);
-	N.pushFront(6);
+	N.pushBack(1);
+	N.pushBack(2);
+	N.pushBack(3);
+	N.pushBack(4);
+	N.pushBack(5);
+
+	N.insert(3,26);
+
+	List<int>::Iterator foo;
+	for (foo = N.begin(); foo != N.end(); foo++)
+	{
+		std::cout << *foo;
+	}
 	return 0;
 
 }
