@@ -1,33 +1,37 @@
 #pragma once
+
 class BinaryTree
 {
 public:
+
 	struct Node
 	{
-		Node(int key) 
+		Node(int key)
 		{
 			key = key;
 			Left = nullptr;
 			right = nullptr;
+			Root = nullptr;
 		};
-		
 		int key;
 		Node *Left;
 		Node *right;
-
-
+		Node * Root;
 	};
+
 	
 	BinaryTree();
 	virtual ~BinaryTree();
+	void treeInsertion(int key, Node* node);
 
+	//bool isLeaf();
 	//BinaryTree searchTree();
-	BinaryTree* treeInsertion(int key, Node* node);
+	
 	//BinaryTree treeDeletion();
 
 private:
 	
-	Node * Root;
+	
 
 };
 
