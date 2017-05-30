@@ -55,16 +55,15 @@ public:
 		//++ptr
 		void operator++() { ptr = ptr->Next; };
 
+		void operator--() { ptr = ptr->Previous; };
+
 		void operator+=(int position)
 		{
-			for (int i = 1; i < position; i++)
+			for (int i = 0; i < position; i++)
 			{
 				ptr = ptr->Next;
 			}
 		};
-
-		void operator--() { ptr = ptr->Previous; };
-
 		void operator--(int) { ptr = ptr->Previous; };
 		
 		bool operator!=(const Iterator & other) { return ptr != other.ptr; };
@@ -142,7 +141,6 @@ inline void List<T>::pushFront(const T value)
 	}
 	m_eleNum++;
 }
-
 
 template<class T>
 inline void List<T>::pushBack(const T value)
