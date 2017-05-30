@@ -10,13 +10,15 @@ int main()
 	N.pushBack(4);
 	N.pushBack(5);
 
-	N.insert(3,26);
 
 	List<int>::Iterator foo;
 	for (foo = N.begin(); foo != N.end(); foo++)
 	{
-		std::cout << *foo;
+		std::cout << *foo << std::endl;
+		
 	}
+	std::cout << " Size: " << N.getSize() << std::endl;
+	system("pause");
 	return 0;
-
+	
 }

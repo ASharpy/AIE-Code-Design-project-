@@ -49,9 +49,18 @@ public:
 
 		ListNode * ptr;
 
+		// ptr++
 		void operator++(int) { ptr = ptr->Next; };
 
+		//++ptr
 		void operator++() { ptr = ptr->Next; };
+
+		void operator+=(int position)
+		{
+			{
+				ptr = ptr->Next;
+			}
+		};
 
 		void operator--() { ptr = ptr->Previous; };
 
@@ -61,7 +70,20 @@ public:
 
 		bool operator==(const Iterator & other) { return ptr == other.ptr; };
 
-		Iterator operator=(const Iterator & other) { ptr = other.ptr; return *this; };
+		Iterator &operator=(const Iterator & other) { ptr = other.ptr; return *this; };
+
+		T *operator ->()
+		{
+			return &ptr->obj;
+		};
+
+		const Iterator *operator ->()const
+		{
+
+			return *this;
+		}
+
+
 		T &operator*() {return ptr->obj; };
 	
 	};
@@ -80,30 +102,18 @@ public:
 		return temp;
 	};
 
-
+	float getSize() { return m_eleNum; };
 
 	List() {};
 	~List() {};
 
 	void pushFront(const T  value);
 	void pushBack(const T  value);
-	void insert(float element , const T & value);
+	void insert(int element , const T & value);
 	void popFront();
 	void popBack();
 	void deleteList();
 	void deletePosition(float position);
-	void printList();
-	//void erase(T);
-	//void remove(T);
-	//T first();
-	//T last();
-	//T begin();
-	//T end();
-
-
-
-
-
 };
 
 template<class T>
@@ -209,7 +219,7 @@ inline void List<T>::popBack()
 }
 
 template<class T>
-inline void List<T>::insert(float element, const T & value)
+inline void List<T>::insert(int element, const T & value)
 {
 	if (element < 0 || element > m_eleNum)
 	{
@@ -226,32 +236,21 @@ inline void List<T>::insert(float element, const T & value)
 	}
 	else
 	{
-		ListNode * holder = m_first;
 
-		for (int i = 1; i <= element; i++)
-		{
-			if (i == element)
-			{
-				ListNode * N = new ListNode();
 
-				N->Next = holder->Next;
-				N->Previous = holder;
+		foo += (element);
 
-				holder->Next->Previous = N;
+		ListNode * N = new ListNode();
 
-				holder->Next = N;
+		N->Previous = foo.ptr;
 
-				N->obj = value;
 
-				m_eleNum++;
-			}
-			else
-			{
-				holder = holder->Next;
-			}
-		}
 
+		N->obj = value;
+
+		m_eleNum++;
 	}
+	
 }
 
 template<class T>
@@ -296,15 +295,19 @@ inline void List<T>::deletePosition(float position)
 	{
 		ListNode * holder = m_first;
 
-		for (i = 0; i < length; i++)
+		for (int i = 1; i <= position; i++)
 		{
 			if (i == position)
 			{
-				holder->Next = holder->Previous;
+				ListNode * holder2 = holder->Next;
+				
 
-				holder->Previous = holder->Next;
+				holder->Next->Previous = holder->Previous;
+
+				holder->Previous->Next = holder->Next;
 
 				delete holder;
+				m_eleNum--;
 
 			}
 			else
@@ -317,14 +320,5 @@ inline void List<T>::deletePosition(float position)
 	}
 }
 
-template<class T>
-inline void List<T>::printList()
-{
-	for (int i = 0; i < m_eleNum; i++)
-	{
-		std::cout << m_first->obj;
 
-		m_first = m_first->Next;
-	}
-}
 
