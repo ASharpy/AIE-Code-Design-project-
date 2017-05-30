@@ -1,35 +1,38 @@
 #pragma once
 
+template<class T>
 class BinaryTree
 {
-public:
+private: 
 
-	struct Node
+	class TreeNode
 	{
-		Node(int key)
+	public:
+		TreeNode(T key)
 		{
 			key = key;
 			Left = nullptr;
 			right = nullptr;
 			Root = nullptr;
 		};
+		~TreeNode() {};
+
 		int key;
-		Node *Left;
-		Node *right;
-		Node * Root;
+		TreeNode *Left;
+		TreeNode *right;
+		TreeNode * Root;
+	
+		
 	};
 
-	
-	BinaryTree();
-	virtual ~BinaryTree();
-	void treeInsertion(int key, Node* node);
+
 
 	//bool isLeaf();
 	//BinaryTree searchTree();
 	
 	//BinaryTree treeDeletion();
 
-private:
+public:
 	
 	
 
