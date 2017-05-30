@@ -32,7 +32,7 @@ bool  unitTest()
 
 	if (L1.getSize() != 5)
 	{
-		std::cout << "Size is not correct";
+		std::cout << "Size of list for push back test is not correct" << std::endl;;
 		return false;
 	}
 
@@ -63,14 +63,14 @@ bool  unitTest()
 
 	if (L2.getSize() != 5)
 	{
-		std::cout << "Size is not correct";
+		std::cout << "Size of list for push front test is not correct" << std::endl;;
 		return false;
 	}
 
 
 /*************************************************************************************
 **************************************************************************************
-								insert test before
+								insert after test
 **************************************************************************************
 **************************************************************************************/
 	List<int> L3;
@@ -89,13 +89,13 @@ bool  unitTest()
 
 	if ( *It3 != 26)
 	{
-		std::cout << "Did not insert properly" << std::endl;
+		std::cout << "Did not insert after properly" << std::endl;
 		return false;
 	}
 
 	if (L3.getSize() != 6)
 	{
-		std::cout << "Size is not correct";
+		std::cout << "Size of list for insert after test is not correct" << std::endl;;
 		return false;
 	}
 
@@ -103,7 +103,7 @@ bool  unitTest()
 
 /*************************************************************************************
 **************************************************************************************
-					insert test before
+					insert before test
 **************************************************************************************
 **************************************************************************************/
 	List<int> L4;
@@ -122,15 +122,164 @@ bool  unitTest()
 
 	if (*It4 != 26)
 	{
-		std::cout << "Did not insert properly" << std::endl;
+		std::cout << "Did not insert before properly" << std::endl;
 		return false;
 	}
 
 	if (L4.getSize() != 6)
 	{
-		std::cout << "Size is not correct";
+		std::cout << "Size of list for insert before test is not correct" << std::endl;;
 		return false;
 	}
+
+
+
+/*************************************************************************************
+**************************************************************************************
+						pop Back test
+**************************************************************************************
+**************************************************************************************/
+
+	List<int> L5;
+	L5.pushBack(1);
+	L5.pushBack(2);
+	L5.pushBack(3);
+	L5.pushBack(4);
+	L5.pushBack(5);
+
+
+	L5.popBack();
+
+	List<int>::Iterator It5 = L5.begin();
+
+	int k = 1;
+
+	for (It5 = L5.begin(); It5 != L5.end(); It5++)
+	{
+
+		if (*It5 != k)
+		{
+			std::cout << "The list did not pop back properly" << std::endl;
+			return false;
+		}
+		k++;
+	}
+
+	if (L5.getSize() != 4)
+	{
+		std::cout << "Size of list for pop Back test is not correct" << std::endl;;
+		return false;
+	}
+
+
+/*************************************************************************************
+**************************************************************************************
+								pop Front test
+**************************************************************************************
+**************************************************************************************/
+
+	List<int> L6;
+	L6.pushBack(1);
+	L6.pushBack(2);
+	L6.pushBack(3);
+	L6.pushBack(4);
+	L6.pushBack(5);
+
+
+	L6.popFront();
+
+	List<int>::Iterator It6 = L6.begin();
+
+	int l = 2;
+
+	for (It6 = L6.begin(); It6 != L6.end(); It6++)
+	{
+
+		if (*It6 != l)
+		{
+			std::cout << "The list did not pop front properly" << std::endl;
+			return false;
+		}
+		l++;
+	}
+
+	if (L6.getSize() != 4)
+	{
+		std::cout << "Size of list for pop Front test is not correct" << std::endl;;
+		return false;
+	}
+
+	
+
+/*************************************************************************************
+**************************************************************************************
+							Delete List test
+**************************************************************************************
+**************************************************************************************/
+	
+	List<int> L7;
+	L7.pushBack(1);
+	L7.pushBack(2);
+	L7.pushBack(3);
+	L7.pushBack(4);
+	L7.pushBack(5);
+	
+	L7.deleteList();
+
+	List<int>::Iterator It7 = L7.begin();
+
+	for (It7 = L7.begin(); It7 != L7.end(); It7++)
+	{
+
+	
+		
+		std::cout << "Delete whole list didn't work properly" << std::endl;
+			return false;
+	
+	}
+
+	if (L7.getSize() != 0)
+	{
+		std::cout << "Size of list for Delete List test is not correct" << std::endl;;
+		return false;
+	}
+
+/*************************************************************************************
+**************************************************************************************
+							Delete position test
+**************************************************************************************
+**************************************************************************************/
+
+
+	List<int> L8;
+	L8.pushBack(1);
+	L8.pushBack(2);
+	L8.pushBack(3);
+	L8.pushBack(4);
+	L8.pushBack(5);
+
+
+	L8.deletePosition(3);
+
+	List<int>::Iterator It8 = L8.begin();
+
+
+	It8 += (3);
+
+	if (*It8 != 4)
+	{
+		std::cout << "Did not delete position properly" << std::endl;
+		return false;
+	}
+
+	if (L8.getSize() != 4)
+	{
+		std::cout << "Size of list for Delete position test is not correct" << std::endl;;
+		return false;
+	}
+
+
+
 
 /*
 
@@ -158,6 +307,10 @@ int main()
 	if (unitTest())
 	{
 		std::cout << " All tests passed successfully" << std::endl;
+	}
+	else 
+	{
+		std::cout << "Test Failed" << std::endl;
 	}
 	system("pause");
 	return 0;

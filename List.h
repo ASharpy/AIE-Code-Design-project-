@@ -259,6 +259,7 @@ inline void List<T>::insert(int element, const T & value)
 template<class T>
 inline void List<T>::deleteList()
 {
+	int listDel = 0;
 	ListNode * Start = m_first;
 
 	for (int i = 0; i < m_eleNum; i++)
@@ -268,8 +269,9 @@ inline void List<T>::deleteList()
 		delete Start;
 
 		Start = m_first;
+		listDel++;
 	}
-
+	m_eleNum = m_eleNum - listDel;
 	m_first = nullptr;
 
 	m_last = nullptr;
