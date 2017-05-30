@@ -57,6 +57,7 @@ public:
 
 		void operator+=(int position)
 		{
+			for (int i = 1; i < position; i++)
 			{
 				ptr = ptr->Next;
 			}
@@ -237,14 +238,18 @@ inline void List<T>::insert(int element, const T & value)
 	else
 	{
 
+		List<T>::Iterator holder = begin();
 
-		foo += (element);
+		holder += (element);
 
 		ListNode * N = new ListNode();
 
-		N->Previous = foo.ptr;
+		N->Next = (holder.ptr)->Next;
+		N->Previous = holder.ptr;
 
+		(holder.ptr)->Next->Previous = N;
 
+		(holder.ptr)->Next = N;
 
 		N->obj = value;
 
@@ -293,30 +298,19 @@ inline void List<T>::deletePosition(float position)
 
 	else
 	{
-		ListNode * holder = m_first;
 
-		for (int i = 1; i <= position; i++)
-		{
-			if (i == position)
-			{
-				ListNode * holder2 = holder->Next;
-				
+		List<T>::Iterator holder = begin();
 
-				holder->Next->Previous = holder->Previous;
+		holder += (position);
 
-				holder->Previous->Next = holder->Next;
+		(holder.ptr)->Next->Previous = (holder.ptr)->Previous;
 
-				delete holder;
-				m_eleNum--;
+		(holder.ptr)->Previous->Next = (holder.ptr)->Next;
 
-			}
-			else
-			{
-				holder = holder->Next;
-			}
-		}
+		delete holder.ptr;
 
-	
+		m_eleNum--;
+
 	}
 }
 

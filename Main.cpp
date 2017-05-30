@@ -10,6 +10,7 @@ int main()
 	N.pushBack(4);
 	N.pushBack(5);
 
+	N.deletePosition(3);
 
 	List<int>::Iterator foo;
 	for (foo = N.begin(); foo != N.end(); foo++)
