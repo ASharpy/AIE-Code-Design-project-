@@ -17,12 +17,12 @@ bool  unitTest()
 	L1.pushBack(4);
 	L1.pushBack(5);
 
-	List<int>::Iterator foo;
+	List<int>::Iterator It1;
 	int i = 1;
-	for (foo = L1.begin(); foo != L1.end(); foo++)
+	for (It1 = L1.begin(); It1 != L1.end(); It1++)
 	{
 	
-		     if (*foo != i)
+		     if (*It1 != i)
 			{
 				std::cout << "The list did not push back properly" << std::endl;
 				return false;
@@ -33,7 +33,7 @@ bool  unitTest()
 	if (L1.getSize() != 5)
 	{
 		std::cout << "Size is not correct";
-		return "false";
+		return false;
 	}
 
 /*************************************************************************************
@@ -50,10 +50,10 @@ bool  unitTest()
 	L2.pushFront(5);
 
 	int j = 5;
-	for (foo = L2.begin(); foo != L2.end(); foo++)
+	for (It1 = L2.begin(); It1 != L2.end(); It1++)
 	{
 
-		if (*foo != j)
+		if (*It1 != j)
 		{
 			std::cout << "The list did not push front properly" << std::endl;
 			return false;
@@ -64,13 +64,13 @@ bool  unitTest()
 	if (L2.getSize() != 5)
 	{
 		std::cout << "Size is not correct";
-		return "false";
+		return false;
 	}
 
 
 /*************************************************************************************
 **************************************************************************************
-								insert test
+								insert test before
 **************************************************************************************
 **************************************************************************************/
 	List<int> L3;
@@ -81,19 +81,56 @@ bool  unitTest()
 	L3.pushBack(5);
 
 
-	List<int>::Iterator foobar = L3.begin();
+	List<int>::Iterator It3 = L3.begin();
 
-	L3.insert(2, 26);
+	L3.insert(5, 26);
 
-	foobar += (2);
+	It3 += (6);
 
-	if ( *foobar != 26)
+	if ( *It3 != 26)
 	{
 		std::cout << "Did not insert properly" << std::endl;
 		return false;
 	}
 
+	if (L3.getSize() != 6)
+	{
+		std::cout << "Size is not correct";
+		return false;
+	}
 
+
+
+/*************************************************************************************
+**************************************************************************************
+					insert test before
+**************************************************************************************
+**************************************************************************************/
+	List<int> L4;
+	L4.pushBack(1);
+	L4.pushBack(2);
+	L4.pushBack(3);
+	L4.pushBack(4);
+	L4.pushBack(5);
+
+
+	List<int>::Iterator It4 = L4.begin();
+
+	L4.insert(3, 26);
+
+	It4 += (3);
+
+	if (*It4 != 26)
+	{
+		std::cout << "Did not insert properly" << std::endl;
+		return false;
+	}
+
+	if (L4.getSize() != 6)
+	{
+		std::cout << "Size is not correct";
+		return false;
+	}
 
 /*
 

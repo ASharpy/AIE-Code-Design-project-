@@ -59,7 +59,7 @@ public:
 
 		void operator+=(int position)
 		{
-			for (int i = 0; i < position; i++)
+			for (int i = 1; i < position; i++)
 			{
 				ptr = ptr->Next;
 			}
@@ -227,11 +227,11 @@ inline void List<T>::insert(int element, const T & value)
 
 	if (element == 0)
 	{
-		pushFront(element);
+		pushFront(value);
 	}
 	else if (element == m_eleNum)
 	{
-		pushBack(element);
+		pushBack(value);
 	}
 	else
 	{
@@ -242,12 +242,12 @@ inline void List<T>::insert(int element, const T & value)
 
 		ListNode * N = new ListNode();
 
-		N->Next = (holder.ptr)->Next;
-		N->Previous = holder.ptr;
+		N->Next = (holder.ptr);
+		N->Previous = holder.ptr->Previous;
 
-		(holder.ptr)->Next->Previous = N;
+		(holder.ptr)->Previous->Next = N;
 
-		(holder.ptr)->Next = N;
+		//(holder.ptr)->Next = N;
 
 		N->obj = value;
 
