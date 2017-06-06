@@ -1,5 +1,6 @@
 #include <iostream>
 #include "List.h"
+#include "BinaryTree.h"
 
 bool  unitTest()
 {
@@ -312,7 +313,21 @@ int main()
 	{
 		std::cout << "Test Failed" << std::endl;
 	}
+
+
+	BinaryTree<int , int> T;
+
+	T.insert(1, 4);
+	T.insert(3, 5);
+	T.insert(2, 3);
+	T.insert(6, 7);
+	T.insert(5, 8);
+
+
+
+	std::cout << T.Search(2) << std::endl;
+
 	system("pause");
 	return 0;
-	
+
 }
