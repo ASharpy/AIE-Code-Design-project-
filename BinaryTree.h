@@ -10,6 +10,7 @@ private:
 	class TreeNode
 	{
 	public:
+		
 
 		T key;
 		U value;
@@ -29,10 +30,12 @@ private:
 			left = nullptr;
 			right = nullptr;
 		};
-		~TreeNode() {};
+		~TreeNode() { value = 0; key = 0; };
 
 	};
-
+	
+	//Private Functions 
+	int leafNum = 0;
 	TreeNode * Root;
 
 	//bool isLeaf();
@@ -52,6 +55,7 @@ private:
 				leaf->left->value = valueNum;
 				leaf->left->left = nullptr;
 				leaf->left->right = nullptr;
+				leafNum++;
 			}
 		}
 
@@ -68,6 +72,7 @@ private:
 				leaf->right->value = valueNum;
 				leaf->right->left = nullptr;
 				leaf->right->right = nullptr;
+				leafNum++;
 			}
 		}
 
@@ -101,10 +106,26 @@ private:
 
 	}
 	
+	void DestroyTree(TreeNode *leaf)
+	{
+		if (leaf != nullptr)
+		{
+			DestroyTree(leaf->left);
+			DestroyTree(leaf->right);
+			delete leaf;
+			Root = nullptr;
+			leafNum--;
+		}
+	}
 	//BinaryTree treeDeletion();
 
 
 public:
+
+	int	getLeafNum()
+	{
+		return leafNum;
+	}
 
 	BinaryTree()
 	{
@@ -125,12 +146,18 @@ public:
 			Root->key = KeyNum;
 			Root->left = nullptr;
 			Root->right = nullptr;
+			leafNum++;
 		}
 	};
 
 	U Search(T keyNum)
 	{
 		return SearchTree(keyNum, Root);
+	}
+
+	void deleteTree()
+	{
+		DestroyTree(Root);
 	}
 };
 
