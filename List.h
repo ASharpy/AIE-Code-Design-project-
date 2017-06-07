@@ -8,23 +8,30 @@ private:
 	class ListNode
 	{
 	public:
+		/*
+		Listnode Constructor sets the next and previous pointers to nullptr to make sure they arnt pointing to garbage
+		no returns
+		*/
 		ListNode()
 		{
 			Next = nullptr;
 			Previous = nullptr;
 		}
 
+		/*
+		List Node Copy Constructor creates a new objects when the list node is created
+		@param newobj the object being created
+		no returns
+		*/
 		ListNode(T newobj)
 		{
 			Next = nullptr;
 			Previous = nullptr;
 			obj = newobj;
 		}
-
+		
 		~ListNode()
 		{
-			Next = nullptr;
-			Previous = nullptr;
 		}
 
 		ListNode * Next;
