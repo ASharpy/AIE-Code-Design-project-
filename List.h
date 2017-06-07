@@ -34,36 +34,71 @@ private:
 		{
 		}
 
+		/*
+		Pointers pointing to the next and previous objects in the list.
+		*/
 		ListNode * Next;
 		ListNode * Previous;
 		T obj;
 
 	};
 
+	/*
+	The first and last objects of the list
+	*/
 	ListNode * m_first;
 	ListNode * m_last;
 
+	//Number of elements in the list
 	float m_eleNum = 0;
+
+
 public:
 	class Iterator
 	{
 	public:
 		Iterator() {};
 
+		/*
+		Iterator copy Constructor creates copy iterator
+		@param other another iterator
+		no returns
+		*/
 		Iterator(const Iterator & other) { ptr = other.ptr; };
 
 		~Iterator() {};
 
 		ListNode * ptr;
 
-		// ptr++
+		/*
+		++ operator overloader for going to the next object in the list (ptr++)
+		no returns 
+		*/
 		void operator++(int) { ptr = ptr->Next; };
 
-		//++ptr
+		/*
+		++ operator overloader for going to the next object in the list (++ptr)
+		no returns
+		*/
 		void operator++() { ptr = ptr->Next; };
 
+
+		/*
+		-- operator overloader for going to the previous object in the list (--ptr)
+		no returns
+		*/
 		void operator--() { ptr = ptr->Previous; };
 
+		/*
+		-- operator overloader for going to the previous object in the list (ptr--)
+		no returns
+		*/
+		void operator--(int) { ptr = ptr->Previous; };
+		
+		/*
+		+= operator overloader for going to the previous object in the list (--ptr)
+		no returns
+		*/
 		void operator+=(int position)
 		{
 			for (int i = 1; i < position; i++)
