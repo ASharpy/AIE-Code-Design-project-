@@ -1,30 +1,28 @@
 #pragma once
 #include <conio.h>
+#define MAX 10
 template<class T>
 class Stack
 {
 public:
-	const int MAX = 10;
 	T obj;
 	T topObj;
-	int top;
-
-	T myArray[MAX];
-	Stack()
-	{ 
-		for (int i = 0; i < MAX; i++)
+	int top = -1;
+	
+	T myArray[10];
+	//Stack()
+	//{ 
+		for (int i = 0; i < 10; i++)
 		{
-			T myArray[i] = NULL;
+			T myArray[i] = 0;
 		}
-	}
+	//}
 
 	~Stack() {};
 
-	top = -1;
-
 	void push(T value)
 	{
-		top++
+		top++;
 			if (top<MAX)
 			{
 				myArray[top] = value;
@@ -35,4 +33,21 @@ public:
 			}
 	}
 	
+
+	T pop()
+	{
+		if (top == 1)
+		{
+			throw("Stack is Empty");
+			return NULL;
+
+		}
+		else
+		{
+			T data = myArray[top];
+			myArray[top] = NULL;
+			top--;
+			return data;
+		}
+	}
 };

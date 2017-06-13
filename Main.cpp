@@ -1,6 +1,7 @@
 #include <iostream>
 #include "List.h"
 #include "BinaryTree.h"
+#include "Stack.h"
 
 bool  unitTest()
 {
@@ -346,13 +347,20 @@ bool  unitTest()
 	search 
 	*/
 
+
+	Stack<int> stack;
+	stack.push(3);
+	stack.push(4);
+	stack.push(6);
+	stack.push(8);
+
 	return true;
-
-
 }
 
 int main()
 {
+	int foo;
+	foo = -1;
 
 	if (unitTest())
 	{

@@ -106,7 +106,6 @@ public:
 				ptr = ptr->Next;
 			}
 		};
-		void operator--(int) { ptr = ptr->Previous; };
 		
 		bool operator!=(const Iterator & other) { return ptr != other.ptr; };
 
