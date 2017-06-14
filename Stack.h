@@ -10,6 +10,10 @@ public:
 	int top = -1;
 	
 	T myArray[10];
+	for (size_t i = 0; i < length; i++)
+	{
+
+	}
 	//Stack()
 	//{ 
 		for (int i = 0; i < 10; i++)
